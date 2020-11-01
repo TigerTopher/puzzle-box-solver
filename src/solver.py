@@ -39,37 +39,22 @@ def shiftQuadrant4(originalBoard):
     board[1][1], board[1][2], board[2][2], board[2][1] = board[2][1], board[1][1], board[1][2], board[2][2]
     return board
 
-def prettyPrint(board):
-    print("-"*len(board))
-    for i in range(0, len(board)):
-        print(board[i])
-    print("-"*len(board))
-
-
 def isBoardInPastBoardStates(board, pastBoardStates):
     for state in pastBoardStates:
         if(areBoardsEqual(board, state)):
             return True
     return False
 
-
 attempt = 0
 def solve(board, stack, pastBoardStates, maxMoves):
     global attempt
     attempt = attempt + 1
-    # print("Attempt: ", attempt)
 
-    if(len(stack) == maxMoves):
+    if(len(stack) >= maxMoves):
         return
 
     if(isSolved(board)):
-        # print("Solution found!")
-        print("Solution: ", stack)
-        # for i in range(0, len(pastBoardStates)):
-        #     prettyPrint(pastBoardStates[i])
-        #     print(stack[i])
-        # prettyPrint(solved)
-        # exit()
+        print("Attempt: ", attempt, "Solution: ", stack)
 
     if isBoardInPastBoardStates(board, pastBoardStates):
         return
@@ -81,4 +66,3 @@ def solve(board, stack, pastBoardStates, maxMoves):
 
 maxMoves = 11
 solve(initial_board, [], [], maxMoves)
-
